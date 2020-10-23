@@ -16,8 +16,16 @@ function* fetchItems() {
   }
 }
 
+function* addItem(action) {
+  try{
+    const response = yield axios.post('/api/shelf', action.payload)
+    yield put({type: 'FETCH_ITEMS'})
+  }catch(err){ console.log('error adding item', err)}
+}
+
 function* itemsSaga() {
   yield takeLatest('FETCH_ITEMS', fetchItems);
+  yield takeLatest('ADD_ITEM', addItem);
 }
 
 export default itemsSaga;

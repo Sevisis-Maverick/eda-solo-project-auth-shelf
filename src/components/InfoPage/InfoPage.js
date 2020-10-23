@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Form from './Form';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -18,6 +19,7 @@ class InfoPage extends Component {
     return (
       <div>
         <p>Info Page</p>
+        <Form />
       </div>
     )
   }
