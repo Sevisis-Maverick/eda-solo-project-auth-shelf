@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Delete from '../Delete/Delete';
+
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -14,10 +16,16 @@ class InfoPage extends Component {
 
 
 
+
+
+
+
   render() {
     return (
       <div>
         <p>Info Page</p>
+
+        <Delete />
       </div>
     )
   }
