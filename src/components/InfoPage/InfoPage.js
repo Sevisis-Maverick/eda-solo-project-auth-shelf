@@ -32,7 +32,7 @@ class InfoPage extends Component {
     console.log('trying to delete item:', id);
     this.props.dispatch({
       type: 'DELETE_ITEM',
-      url: `/api/shelf/id`
+      payload: id,
     });
     this.getItems();
   }

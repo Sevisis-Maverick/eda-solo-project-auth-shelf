@@ -27,9 +27,9 @@ export class Form extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} action="">
-                Description: <input onChange={this.handleChange} type="text" name="description" />
+                Description: <input onChange={this.handleChange} type="text" name="description" value={this.state.description} />
                 <br />
-                Image Url: <input onChange={this.handleChange} type="text" name='image_url' />
+                Image Url: <input onChange={this.handleChange} type="text" name='image_url' value={this.state.image_url} />
                 <br />
                 <button type='submit'>Submit</button>
                 </form>

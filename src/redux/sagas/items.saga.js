@@ -26,14 +26,15 @@ function* addItem(action) {
 
 function* itemsSaga() {
   yield takeLatest('FETCH_ITEMS', fetchItems);
-  yield takeEvery('DELETE_ITEMS', deleteItem);
+  yield takeEvery('DELETE_ITEM', deleteItem);
   yield takeLatest('ADD_ITEM', addItem);
 }
 
 function* deleteItem(action) {
   console.log(('deleting item,', action.payload));
-  let id = action.payload.id;
+  let id = action.payload;
   yield axios.delete(`/api/shelf/${id}`, action.payload);
+  yield put({type: 'FETCH_ITEMS'});
 
 }
 

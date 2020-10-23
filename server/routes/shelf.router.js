@@ -7,6 +7,7 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
  * Get all of the items on the shelf
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
+  console.log('tryna get items');
   console.log('req.user:', req.user);
   pool.query('SELECT * FROM "item"')
   .then((results) => res.send(results.rows))
@@ -20,11 +21,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  * Add an item for the logged in user to the shelf
  */
 router.post('/',rejectUnauthenticated, (req, res) => {
+  console.log('tryna add item');
   console.log(req.user);
   console.log(req.body);
   let queryText = `INSERT INTO "item" ("description", "image_url", "user_id") VALUES ($1,$2,$3)`;
   pool.query(queryText, [req.body.description, req.body.image_url, req.user.id]).then(result => res.sendStatus(200)).catch(err => {
-    console.log('Router error in posting item');
+    console.log('Router error in posting item', err);
     res.sendStatus(500);
   })
   // code here
@@ -33,6 +35,7 @@ router.post('/',rejectUnauthenticated, (req, res) => {
  * Delete an item if it's something the logged in user added
  */
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('tryna delete an item');
   console.log(req.params.id);
   let id = req.params.id;
   let queryText = `DELETE FROM "item" WHERE "id" = $1 AND "user_id" = $2`;
