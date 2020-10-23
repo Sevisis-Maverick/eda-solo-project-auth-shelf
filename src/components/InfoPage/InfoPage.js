@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Form from './Form';
- /// This is one of our simplest components
+import Item from './Item';
+/// This is one of our simplest components
 
 
 
@@ -28,33 +29,20 @@ class InfoPage extends Component {
     })
   };
 
-  deleteItem = (event, id) => {
-    console.log('trying to delete item:', id);
-    this.props.dispatch({
-      type: 'DELETE_ITEM',
-      payload: id,
-    });
-  }
-  
-  
   render() {
     console.log(this.props.reduxState);
     return (
       <div>
         <p>Info Page</p>
         <ul>
-            {this.props.reduxState.items != undefined && this.props.reduxState.items.map((item) => {
-              return (
-              <>
-              <img alt={item.id} src={item.image_url} />
-              <p>{item.description}</p>
-              <button onClick={(event) => this.deleteItem(event, item.id)}>Delete?</button>
-              </>
+          {this.props.reduxState.items != undefined && this.props.reduxState.items.map((item) => {
+            return (
+              <Item item={item} />
             )
           })}
         </ul>
-      <Form />
-    </div>
+        <Form />
+      </div>
     )
   }
 }

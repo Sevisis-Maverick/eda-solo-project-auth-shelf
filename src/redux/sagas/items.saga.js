@@ -24,10 +24,23 @@ function* addItem(action) {
   }catch(err){ console.log('error adding item', err)}
 }
 
+function* editItem(action) {
+  console.log(action.payload);
+  try {
+    const response = yield axios.put(
+      `/api/shelf/${action.payload.id}`, action.payload.update
+    );
+    yield put({ type: "FETCH_ITEMS" });
+  } catch(err) {
+    console.log('error adding item', err)
+  }
+}
+
 function* itemsSaga() {
   yield takeLatest('FETCH_ITEMS', fetchItems);
   yield takeEvery('DELETE_ITEM', deleteItem);
   yield takeLatest('ADD_ITEM', addItem);
+  yield takeEvery('EDIT_ITEM', editItem);
 }
 
 function* deleteItem(action) {
