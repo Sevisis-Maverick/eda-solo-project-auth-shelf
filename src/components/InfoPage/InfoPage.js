@@ -34,7 +34,6 @@ class InfoPage extends Component {
       type: 'DELETE_ITEM',
       payload: id,
     });
-    this.getItems();
   }
   
   
@@ -47,7 +46,7 @@ class InfoPage extends Component {
             {this.props.reduxState.items != undefined && this.props.reduxState.items.map((item) => {
               return (
               <>
-              <img alt={item.id} src={item.url} />
+              <img alt={item.id} src={item.image_url} />
               <p>{item.description}</p>
               <button onClick={(event) => this.deleteItem(event, item.id)}>Delete?</button>
               </>
