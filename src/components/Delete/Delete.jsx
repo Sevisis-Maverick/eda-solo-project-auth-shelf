@@ -16,7 +16,7 @@ export class Delete extends Component {
     render() {
         return (
             <div>
-                <button onClick={(event) => this.deleteItem(event, item.id)}></button>
+                <button onClick={(event) => this.deleteItem(event, this.props.item.id)}>Delete</button>
             </div>
         )
     }

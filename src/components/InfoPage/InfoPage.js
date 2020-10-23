@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Form from './Form';
 import Delete from '../Delete/Delete';
- */// This is one of our simplest components
+ // This is one of our simplest components
 
 
 // It doesn't have local state, so it can be a function component.
@@ -24,24 +24,29 @@ class InfoPage extends Component {
   getItems = () => {
     console.log('Getting items');
     this.props.dispatch({
-      type: 'SET_ITEMS'
+      type: 'FETCH_ITEMS'
     })
   };
   
   
   render() {
+    console.log(this.props.reduxState);
     return (
       <div>
-      <p>Info Page</p>
-      <ul>
-        {this.props.reduxStore.itemsReducer.map((item, id))}
-        <img alt ={item.id} src={item.url} />
-        <p>{item.description}</p>
-
-    <Delete />
-   </ul>
- <Form />
-      </div>
+        <p>Info Page</p>
+        <ul>
+            {this.props.reduxState.items != undefined && this.props.reduxState.items.map((item) => {
+              return (
+              <>
+              <img alt={item.id} src={item.url} />
+              <p>{item.description}</p>
+              <Delete item={item} /> 
+              </>
+            )
+          })}
+        </ul>
+      <Form />
+    </div>
     )
   }
 }
