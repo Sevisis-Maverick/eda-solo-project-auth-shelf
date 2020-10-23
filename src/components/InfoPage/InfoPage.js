@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Form from './Form';
-import Delete from '../Delete/Delete';
- // This is one of our simplest components
+ /// This is one of our simplest components
+
 
 
 // It doesn't have local state, so it can be a function component.
@@ -27,6 +27,15 @@ class InfoPage extends Component {
       type: 'FETCH_ITEMS'
     })
   };
+
+  deleteItem = (event, id) => {
+    console.log('trying to delete item:', id);
+    this.props.dispatch({
+      type: 'DELETE_ITEM',
+      url: `/api/shelf/id`
+    });
+    this.getItems();
+  }
   
   
   render() {
@@ -40,7 +49,7 @@ class InfoPage extends Component {
               <>
               <img alt={item.id} src={item.url} />
               <p>{item.description}</p>
-              <Delete item={item} /> 
+              <button onClick={(event) => this.deleteItem(event, item.id)}>Delete?</button>
               </>
             )
           })}
