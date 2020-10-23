@@ -5,6 +5,7 @@ import Form from './Form';
  /// This is one of our simplest components
 
 
+
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is, so it doesn't need 'connect()'
@@ -23,7 +24,7 @@ class InfoPage extends Component {
   getItems = () => {
     console.log('Getting items');
     this.props.dispatch({
-      type: 'SET_ITEMS'
+      type: 'FETCH_ITEMS'
     })
   };
 
@@ -38,18 +39,23 @@ class InfoPage extends Component {
   
   
   render() {
+    console.log(this.props.reduxState);
     return (
       <div>
-      <p>Info Page</p>
-      <ul>
-        {this.props.reduxStore.itemsReducer.map((item, id))}
-        <img alt ={item.id} src={item.url} />
-        <p>{item.description}</p>
-
-        <button onClick={(event) => this.deleteItem(event, item.id)}>Delete?</button>
-   </ul>
- <Form />
-      </div>
+        <p>Info Page</p>
+        <ul>
+            {this.props.reduxState.items != undefined && this.props.reduxState.items.map((item) => {
+              return (
+              <>
+              <img alt={item.id} src={item.url} />
+              <p>{item.description}</p>
+              <button onClick={(event) => this.deleteItem(event, item.id)}>Delete?</button>
+              </>
+            )
+          })}
+        </ul>
+      <Form />
+    </div>
     )
   }
 }
