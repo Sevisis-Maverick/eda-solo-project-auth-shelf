@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import Form from './Form';
 /* import Delete from '../Delete/Delete';
  */// This is one of our simplest components
+
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is, so it doesn't need 'connect()'
@@ -37,6 +39,8 @@ class InfoPage extends Component {
 
 {/*         <Delete />
  */}      </ul>
+ <Form />
+
       </div>
     )
   }
